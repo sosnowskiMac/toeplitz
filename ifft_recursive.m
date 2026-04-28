@@ -16,9 +16,6 @@ X_conj = conj(X);
 Y = fft_recursive(X_conj);
 
 % Kroki 3-4: sprzężenie i normalizacja przez n
-x = zeros(n, 1);
-for k = 1 : n
-    x(k) = conj(Y(k)) / n;
-end
+x = conj(Y) / n;
 
 end

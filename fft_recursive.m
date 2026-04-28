@@ -15,20 +15,21 @@ if n == 1
     return;
 end
 
-% Podział na podwektory parzystych i nieparzystych indeksów (1-based)
-x_parzyste    = x(1:2:n);   % elementy o indeksach 1, 3, 5, ..., n-1
-x_nieparzyste = x(2:2:n);   % elementy o indeksach 2, 4, 6, ..., n
+% Podział na podwektory parzystych i nieparzystych indeksów
+x_parzyste = x(2:2:n);   % elementy o indeksach 2, 4, 6, ..., n
+x_nieparzyste    = x(1:2:n);   % elementy o indeksach 1, 3, 5, ..., n-1
 
 % Rekurencyjne wywołania
 E = fft_recursive(x_parzyste);
 O = fft_recursive(x_nieparzyste);
 
 % Scalanie wyników (motylki)
-X = zeros(n, 1);
-for k = 1 : n/2
-    omega_k = exp(-2 * pi * 1i * (k-1) / n);   % czynnik obrotu (twiddle factor)
-    X(k)         = E(k) + omega_k * O(k);
-    X(k + n/2)   = E(k) - omega_k * O(k);
-end
+k = (0:n/2-1).';                       
+omega = exp(-2*pi*1i*k/n);             
+
+t = omega .* O;                        
+
+X = [E + t;
+     E - t];
 
 end
