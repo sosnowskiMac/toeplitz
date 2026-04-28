@@ -46,7 +46,7 @@ if length(c) ~= n || length(r) ~= n
 end
 
 % --- Obliczenie ---
-y = toeplitz_fft_fast(c, r, x);
+y = toeplitz_fft(c, r, x);
 
 % --- Domyślna nazwa wyjścia ---
 if isempty(outname)

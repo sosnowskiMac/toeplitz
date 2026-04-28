@@ -26,8 +26,8 @@ N = 2^nextpow2(2*n);
 % --- Konstrukcja wektora a ---
 a = zeros(N,1);
 a(1) = c(1);
-a(2:n) = r(2:n);
-a(N-n+2:N) = c(2:n);
+a(2:n) = c(2:n);
+a(N-n+2:N) = r(n:-1:2);
 
 % --- Rozszerzenie x ---
 x_ext = zeros(N,1);
