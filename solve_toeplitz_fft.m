@@ -48,10 +48,17 @@ end
 % --- Obliczenie ---
 y = toeplitz_fft(c, r, x);
 
+% --- Folder na wyniki ---
+resultsFolder = 'results';
+
+if ~exist(resultsFolder, 'dir')
+    mkdir(resultsFolder);
+end
+
 % --- Domyślna nazwa wyjścia ---
 if isempty(outname)
     [~, name, ext] = fileparts(filename);
-    outname = ['solution_' name ext];
+    outname = fullfile(resultsFolder, ['solution_' name ext]);
 end
 
 % --- Zapis do pliku ---
